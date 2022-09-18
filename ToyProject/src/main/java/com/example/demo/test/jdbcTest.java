@@ -24,7 +24,7 @@ public class jdbcTest {
 				DriverManager.getConnection(
 						"jdbc:oracle:thin:@localhost:1521/orcl",
 						"system",
-						"1111")){
+						"@$!@$!@")){
 			System.out.println(con+"SUCCESS");
 		} catch (Exception e) {
 			fail(e.getMessage());
