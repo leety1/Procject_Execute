@@ -1,10 +1,15 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="EUC-KR">
-<title>Toy Project About Something</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>View Test Page</title>
 </head>
 <body>
-<h2>HELLO</h2>
+    <h2>Hello!</h2>
+    <div>JSP List Test</div>
+    <c:forEach var="item" items="${list}" varStatus="idx">
+        ${idx.id}st, Hello! ${item.name} <br />
+    </c:forEach>
 </body>
 </html>
