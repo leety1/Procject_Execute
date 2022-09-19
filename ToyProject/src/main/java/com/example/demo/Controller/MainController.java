@@ -9,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.DTO.OrderItemDTO;
+import com.example.demo.DTO.TestVo;
 import com.example.demo.Mappers.OrderMapper;
 
 @Controller
@@ -41,9 +43,13 @@ public class MainController {
 	    ModelAndView mav = new ModelAndView("test");
 	    
 	    List<OrderItemDTO> testList = orderDao.selectTest();
-	    
 	    mav.addObject("list", testList);
 
 	    return mav;
+	}
+	@GetMapping("user/list")
+	public @ResponseBody List<TestVo> getUserList() throws Exception {
+		
+		return orderDao.selectTest2();
 	}
 }

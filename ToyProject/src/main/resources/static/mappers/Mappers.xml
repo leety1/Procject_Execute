@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.Order.OrderMapper">
+<mapper namespace="com.example.demo.Mappers.OrderMapper">
 	<select id="selectTest" resultType="com.example.demo.DTO.OrderItemDTO">
 		SELECT * FROM emp 
 	</select>
+	<select id="selectTest2" resultType="com.example.demo.DTO.TestVo">
+		SELECT * FROM emp 
+	</select>
 </mapper>
+

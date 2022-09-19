@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DTO.OrderItemDTO;
+import com.example.demo.DTO.TestVo;
 import com.example.demo.Mappers.OrderMapper;
 
 @Service
@@ -16,6 +17,11 @@ public class orderDAOImpl {
 	public List<OrderItemDTO> selectTest() throws Exception {
 		// TODO Auto-generated method stub
 		return mapper.selectTest();
+	}
+	
+	public List<TestVo> selectTest2() throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.selectTest2();
 	}
 
 
