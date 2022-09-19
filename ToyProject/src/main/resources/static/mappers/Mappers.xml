@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.Order.OrderMapper">
-	<select id="selectContent" resultType="com.example.demo.DTO">
-		SELECT * FROM ORDER_ONE 
+	<select id="selectTest" resultType="com.example.demo.DTO.OrderItemDTO">
+		SELECT * FROM emp 
 	</select>
 </mapper>

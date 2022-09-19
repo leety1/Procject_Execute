@@ -12,8 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-@ComponentScan(basePackages= {"com.example.demo.Order.OrderMapper"})
 @SpringBootApplication
+
 public class ToyProjectApplication {
 
 	public static void main(String[] args) {

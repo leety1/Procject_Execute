@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1 th:text="${name}">이름이 들어갈 곳 입니다.</h1>
+	<a href="/">index</a>
+	<div>DB Connection Test</div>
+    <c:forEach var="item" items="${list}" varStatus="idx">
+        ${idx.index}st, Hello! ${item.name} <br />
+    </c:forEach>
+	
+</body>
+</html>
