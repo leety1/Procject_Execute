@@ -3,16 +3,17 @@ package com.example.demo.DTO;
 import lombok.Data;
 @Data
 public class OrderItemDTO {
-		private int id;
+		private String id;
 		private String name;
 		private String pants;
 		private String card;
 		
 		
-		public int getId() {
+		
+		public String getId() {
 			return id;
 		}
-		public void setId(int id) {
+		public void setId(String id) {
 			this.id = id;
 		}
 		public String getName() {

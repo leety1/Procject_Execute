@@ -1,4 +1,5 @@
 package com.example.demo.dao;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,16 @@ public class orderDAOImpl {
 		// TODO Auto-generated method stub
 		return mapper.selectTest2();
 	}
-
+	public List<TestVo> createTest() throws Exception{
+		List<TestVo> l = new ArrayList<TestVo>();	
+		System.err.println(l.get(0)+"WHAT_THE_HELL"+l.get(1));
+		return mapper.create(l);
+	}
+	
+	public void insert() throws Exception{
+		TestVo tvo = new TestVo();
+		System.out.println(tvo.getId()+"===="+tvo.getName());
+		mapper.insert(tvo.getId(), tvo.getName());
+	}
 
 }

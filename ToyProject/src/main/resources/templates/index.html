@@ -10,6 +10,10 @@
 	<a href="hello">hello</a>
 	<h1>GELLO2</h1>
 	<p class="msg" th:text="${msg}"></p>
-	
+	<form action="/insert" method="POST">
+    <br>사람ID  : <input type = "text" name="id"></br>
+    <br>이름 name : <input type = "text" name="name"></br>
+    <input type="submit" value="정보 등록">
+    </form>
 </body>
 </html>

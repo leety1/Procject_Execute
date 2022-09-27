@@ -14,4 +14,7 @@ public interface OrderMapper{
 	
 	public List<OrderItemDTO> selectTest() throws Exception;
 	public List<TestVo> selectTest2() throws Exception;
+	public List<TestVo> create(List<TestVo> l)throws Exception;
+
+	public void insert(String id, String name)throws Exception;
 }

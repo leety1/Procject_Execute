@@ -10,5 +10,9 @@
     <c:forEach var="item" items="${list}" varStatus="idx">
         ${idx.id}st, Hello! ${item.name} <br />
     </c:forEach>
+    <form action="insert" method="POST">
+    <br>사람id id : <input type = "text" name="id"></br>
+    <br>이름 name : <input type = "text" name="num"></br>
+    </form>
 </body>
 </html>

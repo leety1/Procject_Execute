@@ -3,10 +3,16 @@
 
 <mapper namespace="com.example.demo.Mappers.OrderMapper">
 	<select id="selectTest" resultType="com.example.demo.DTO.OrderItemDTO">
-		SELECT * FROM emp 
+		SELECT * FROM EMP 
 	</select>
 	<select id="selectTest2" resultType="com.example.demo.DTO.TestVo">
-		SELECT * FROM emp 
+		SELECT * FROM EMP 
 	</select>
+	<insert id="createTest" parameterType="com.example.demo.DTO.TestVo">
+		INSERT INTO EMP(NUM,NAME) VALUES(#{id},#{name})
+	</insert>
+	<insert id="insert" parameterType="com.example.demo.DTO.TestVo">
+		INSERT INTO EMP(NUM,NAME) VALUES(#{id},#{name})
+	</insert>
 </mapper>
 

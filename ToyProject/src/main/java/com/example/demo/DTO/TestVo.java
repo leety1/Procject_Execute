@@ -3,10 +3,9 @@ package com.example.demo.DTO;
 public class TestVo {
     private String id;
     private String name;
-	public TestVo(String id,String name) {
+	public TestVo() {
 		this.id = id;
 		this.name = name;
-		
 	}
 
 	public String getId() {
