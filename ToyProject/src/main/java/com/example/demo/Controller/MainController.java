@@ -7,11 +7,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Base64.Encoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.http.client.HttpResponseException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,10 +31,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.DTO.OrderItemDTO;
 import com.example.demo.DTO.TestVo;
 import com.example.demo.Mappers.OrderMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.Base64;
 @Controller
 public class MainController {
-	
+	JSONObject jsonData = new JSONObject();
 	@Autowired
 	private OrderMapper orderDao;
 	
@@ -65,7 +71,7 @@ public class MainController {
 	public ModelAndView BillSuccess() throws IOException, InterruptedException{
 		ModelAndView mv = new ModelAndView();
 		HttpRequest request = HttpRequest.newBuilder()
-			    .uri(URI.create("https://api.tosspayments.com/v1/billing/authorizations/bln_pmb1EByNx"))
+			    .uri(URI.create("https://api.tosspayments.com/v1/billing/authorizations/bln_1xeQgn9RK"))
 			    .header("Authorization", "Basic dGVzdF9za181R2VQV3Z5Sm5ySzFKbmtZWDdPM2dMek45N0VvOg==")
 			    .header("Content-Type", "application/json")
 			    .method("POST", HttpRequest.BodyPublishers.ofString("{\"customerKey\":\"UBUWgevKEJzBbxBm91B9j\"}"))
@@ -76,8 +82,14 @@ public class MainController {
 			if(response.statusCode()==200) {
 				mv.addObject("response",response.body());
 				mv.setViewName("/tossBilling/EnterSucces");
-				System.out.println("보여주삼");
+				System.out.println(response.body());
+				Map<String, Object> param = new ObjectMapper().readValue(response.body(), HashMap.class);
+				System.out.println(param+"뿌려지니?");
+				param.get("billingKey");
+				System.out.println(param.get("billingKey")+"보여주삼");
 			}else {
+				mv.addObject("code",response.body());
+				mv.addObject("message",response.body());
 				mv.setViewName("/tossBilling/Fail");
 			}
 			
@@ -114,4 +126,10 @@ public class MainController {
 		System.out.println(id+"=====CHECK_THE_STREAM===="+name);
 		return "index";	
 	}
+	
+	@PostMapping(value = "/ajaxTest.do")
+    public String mapRequest(@RequestBody HashMap<String, Object> param) throws Exception{
+        System.out.println("param : " + param);
+        return param.toString();
+    }
 }

@@ -9,6 +9,24 @@
     <div>
         <label>카드 정보: </label>
         <label th:text="${response}"/>
+        <input id="test" />
     </div>
+    <button onclick="ajaxTest()">SEND_INFO</button>
 </body>
+<script type="text/javascript">
+	function ajaxTest(){
+		$.ajax({
+	        url: "ajaxTest.do",
+	        type:"post",
+	        data: JSON.stringify(json),
+	        contentType: "application/json",
+	        success: function(data) {
+	            alert("통신성공");
+	        },
+	        error: function() {
+	            alert("error");
+	        }
+	    })
+	}
+</script>
 </html>
