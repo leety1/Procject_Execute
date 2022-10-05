@@ -1,11 +1,19 @@
 package com.example.demo.Controller;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Base64.Encoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.client.HttpResponseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +27,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.DTO.OrderItemDTO;
 import com.example.demo.DTO.TestVo;
 import com.example.demo.Mappers.OrderMapper;
-
+import java.util.Base64;
 @Controller
 public class MainController {
+	
+	@Autowired
+	private OrderMapper orderDao;
+	
 	@RequestMapping("/")
 	public String index() {
 		System.out.println("여긴타냐");
@@ -39,8 +51,39 @@ public class MainController {
 		md.addAttribute("msg","num : " + rs);
 		return "index";
 	}
-	@Autowired
-	private OrderMapper orderDao;
+	Encoder encoder = Base64.getEncoder();
+	String Secretkey =  "test_sk_5GePWvyJnrK1JnkYX7O3gLzN97Eo";
+	byte[] targetBytes = Secretkey.getBytes();
+    byte[] encodedBytes = encoder.encode(targetBytes);
+	@RequestMapping(value = "/tossBilling/TOSSindex")
+	public ModelAndView TOSS() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/tossBilling/TOSSindex");
+	    return mv;
+	}
+	@RequestMapping(value = "/tossBilling/EnterSucces")
+	public ModelAndView BillSuccess() throws IOException, InterruptedException{
+		ModelAndView mv = new ModelAndView();
+		HttpRequest request = HttpRequest.newBuilder()
+			    .uri(URI.create("https://api.tosspayments.com/v1/billing/authorizations/bln_pmb1EByNx"))
+			    .header("Authorization", "Basic dGVzdF9za181R2VQV3Z5Sm5ySzFKbmtZWDdPM2dMek45N0VvOg==")
+			    .header("Content-Type", "application/json")
+			    .method("POST", HttpRequest.BodyPublishers.ofString("{\"customerKey\":\"UBUWgevKEJzBbxBm91B9j\"}"))
+			    .build();
+		System.out.println(request.headers()+"=======HEADER=======");
+			HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+			System.out.println(response.body()+"\n"+response.statusCode());
+			if(response.statusCode()==200) {
+				mv.addObject("response",response.body());
+				mv.setViewName("/tossBilling/EnterSucces");
+				System.out.println("보여주삼");
+			}else {
+				mv.setViewName("/tossBilling/Fail");
+			}
+			
+		return mv;
+		
+	}
 	
 	@RequestMapping(value = "/test")
 	public ModelAndView test() throws Exception{
@@ -69,7 +112,6 @@ public class MainController {
 		//orderDao.create(list);
 		orderDao.insert(id,name);
 		System.out.println(id+"=====CHECK_THE_STREAM===="+name);
-		return "index";
-		
+		return "index";	
 	}
 }
