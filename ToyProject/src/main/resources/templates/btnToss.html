@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script src="https://js.tosspayments.com/v1"></script>
+</head>
+
+<body>
+	<div>
+		<input type="text" name="amount1" id="amount1">
+		<button onclick="check()">가격 적기</button>
+	</div>
+	<div>
+		<input type="text" name="Thing" id="Thing">
+		<button onclick="check()">물건 적기</button>
+	</div>
+	<div>
+		<input type="text" name="Name" id="Name">
+		<button onclick="check()">고객이름 적기</button>
+	</div>
+
+	<div>
+	<button id="check_button">결제하기</button>
+	</div>
+	<script>
+		let amo = 0;
+		let thi = '';
+		let name = '';
+		
+		var clientKey = 'test_ck_7DLJOpm5QrlnYRdJMxL3PNdxbWnY'
+        var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
+		var button = document.getElementById('check_button');
+		button.addEventListener("click", function() {
+			amo = document.getElementById('amount1').value;
+			thi = document.getElementById('Thing').value;
+			name = document.getElementById('Name').value;
+        	tossPayments.requestPayment('카드', { // 결제 수단 파라미터
+  			  // 결제 정보 파라미터
+  			  amount: amo,
+  			  orderId: 'ftuB35c5Crp3dnS5udYy4',
+  			  orderName: thi,
+  			  customerName: name,
+  			  successUrl: 'http://localhost:8080/success',
+  			  failUrl: 'http://localhost:8080/fail',
+	  			})
+	        })
+	   
+		
+		
+		
+	</script>
+
+</body>
+</html>

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,6 +52,11 @@ public class MainController {
 		System.out.println(model+"==============");
 		return "hello";
 	}
+	@GetMapping("/btnToss")
+	public String btnToss(Model model) {
+		System.out.println(model+"==============");
+		return "btnToss";
+	}
 	@RequestMapping("/{num}")
 	public String index(@PathVariable String num,Model md) {
 		String rs = num;
@@ -68,16 +74,22 @@ public class MainController {
 	    return mv;
 	}
 	@RequestMapping(value = "/tossBilling/EnterSucces")
-	public ModelAndView BillSuccess() throws IOException, InterruptedException{
+	public ModelAndView BillSuccess(@RequestParam("authKey") String auth,@RequestParam("customerKey") String Key) throws IOException, InterruptedException{
 		ModelAndView mv = new ModelAndView();
+		try {
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		HttpRequest request = HttpRequest.newBuilder()
-			    .uri(URI.create("https://api.tosspayments.com/v1/billing/authorizations/bln_1xeQgn9RK"))
+			    .uri(URI.create("https://api.tosspayments.com/v1/billing/authorizations/"+auth))
 			    .header("Authorization", "Basic dGVzdF9za181R2VQV3Z5Sm5ySzFKbmtZWDdPM2dMek45N0VvOg==")
 			    .header("Content-Type", "application/json")
-			    .method("POST", HttpRequest.BodyPublishers.ofString("{\"customerKey\":\"UBUWgevKEJzBbxBm91B9j\"}"))
+			    .method("POST", HttpRequest.BodyPublishers.ofString("{\"customerKey\":\"cdDX9vhYcZDc9ow_TiiSy\"}"))
 			    .build();
-		System.out.println(request.headers()+"=======HEADER=======");
-			HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+			System.out.println(request.headers()+"=======HEADER=======");
+			System.out.println(auth+"=====WEB===="+Key);	
+		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 			System.out.println(response.body()+"\n"+response.statusCode());
 			if(response.statusCode()==200) {
 				mv.addObject("response",response.body());

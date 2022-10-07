@@ -9,13 +9,16 @@
 	<h1>GELLO</h1>
 	<a href="hello">hello</a>
 	<h1>GELLO2</h1>
-	<p class="msg" th:text="${msg}"></p>
+
 	<form action="/insert" method="POST">
     <br>사람ID  : <input type = "text" name="id"></br>
     <br>이름 name : <input type = "text" name="name"></br>
     <input type="submit" value="정보 등록">
     </form>
+    <h1> TOSS 를 통한 결제</h1>
     
+    <button onclick="location.href='btnToss'"> toss 로 들어가자</button>
+
     <h1> kakaoPay api 이용하기 </h1>
     <form method="post" action="/kakaoPay">
     	<button>카카오페이로 결제하기</button>
