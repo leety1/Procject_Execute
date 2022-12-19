@@ -91,7 +91,20 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-thymeleaf</artifactId>
 	</dependency>
+	
+	<!-- jwt 토큰 추가,security -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+	</dependency>
 
+	<dependency>
+		<groupId>io.jsonwebtoken</groupId>
+		<artifactId>jjwt</artifactId>
+		<version>0.9.1</version>
+	</dependency>
+	<!-- end Line -->
+	
 		<!-- jstl 라이브러리 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
