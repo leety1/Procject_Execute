@@ -14,5 +14,17 @@
 	<insert id="insert" parameterType="com.example.demo.DTO.TestVo">
 		INSERT INTO EMP(NUM,NAME) VALUES(#{id},#{name})
 	</insert>
+	
+	<delete id="delete" >
+		DELETE EMP WHERE NUM = #{id}
+	</delete>
+	
+	<update id = "update">
+        UPDATE     EMP
+        SET     NUM = #{id}
+                , NAME = #{name}
+        WEHRE     NUM = #{id}  
+    </update>
+
 </mapper>
 
