@@ -15,11 +15,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 			.authorizeRequests() // 요청에 의한 보안검사
-				.anyRequest().authenticated()
+				.antMatchers("/", "/login","/service","/resources/**").permitAll()
+	            .antMatchers("/admin").hasRole("ADMIN")
+	            .anyRequest().authenticated()
+	            .antMatchers("/**").permitAll()
 			.and() //어떤 요청에도 보안검사
-				.formLogin() //보안 검증은 formLogin 방식
-				.permitAll() // 사용자 정의 로그인 페이지 접근 권한 승인
+				.formLogin()
+				.loginPage("/login")
+				.loginProcessingUrl("/index")
+				.permitAll()
 			.and()
 				.logout();
+			
+				//보안 검증은 formLogin 방식
+		
 	}
 }

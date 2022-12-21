@@ -41,7 +41,14 @@ public class MainController {
 	@Autowired
 	private OrderMapper orderDao;
 	
-	@RequestMapping("/")
+	
+	@GetMapping("/login")
+	public String loginForm() {
+		System.out.println("로그인 화면");
+		return "login";
+	}
+	
+	@RequestMapping("/index")
 	public String index() {
 		System.out.println("여긴타냐");
 		return "index";
