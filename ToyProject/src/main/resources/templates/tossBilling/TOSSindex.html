@@ -8,18 +8,26 @@
 <body>
 <button id="card_button">카드 등록</button>
 
+
+	<div>
+        <label>카드 번호: </label>
+        <label th:text="${card}"/>
+    </div>
+    <div>
+        <label>빌링키: </label>
+        <label th:text="${billing}"/>
+    </div>
 <script type="text/javascript" th:inline="javascript">
     window.addEventListener('load', (event) => {
         document.getElementById("card_button").addEventListener("click", function() {
             var clientKey = "test_ck_7DLJOpm5QrlnYRdJMxL3PNdxbWnY";
             var tossPayments = TossPayments(clientKey);
             tossPayments.requestBillingAuth("카드", {
-                customerKey: "UBUWgevKEJzBbxBm91B9j",
+                customerKey: "cdDX9vhYcZDc9ow_TiiSy",
                 successUrl: window.location.origin + "/tossBilling/EnterSucces",
                 failUrl: window.location.origin + "/tossBilling/Fail",
                 
             });
-            alert("여기서 읽는거 맞지?");
         });
     });
 </script>
