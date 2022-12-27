@@ -40,13 +40,18 @@ public class MainController {
 	JSONObject jsonData = new JSONObject();
 	@Autowired
 	private OrderMapper orderDao;
+		
+	@RequestMapping(value="/login")
+	 public String login(HttpServletRequest req) {
+		 System.out.println("HI == 1");
+		 String id = req.getParameter("id"); 
+		 String pass = req.getParameter("password");
+		 System.out.println(id+"=="+pass);
+		
+		 
+		 return "login";
+	 }
 	
-	
-	@GetMapping("/login")
-	public String loginForm() {
-		System.out.println("로그인 화면");
-		return "login";
-	}
 	
 	@RequestMapping("/index")
 	public String index() {
@@ -151,5 +156,15 @@ public class MainController {
         System.out.println("param : " + param);
         return param.toString();
     }
+	
+	/*
+	 * @RequestMapping(value = "/login", method=RequestMethod.POST) public String
+	 * login(Model model,HttpServletRequest request) throws Exception { String id =
+	 * request.getParameter("ID"); String pass = request.getParameter("PASS");
+	 * System.out.println(id+"=="+pass); return "index"; }
+	 */
+	
+	
+	 
 	
 }
