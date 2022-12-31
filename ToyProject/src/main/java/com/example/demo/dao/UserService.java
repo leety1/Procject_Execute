@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService implements UserDetailsService {
 	private UserRepository userRepository;
-	private UserInfo userInfo;
+	//private UserInfo userInfo;
 	/*
 	 * Spring Security 필수 메소드 구현
 	 * 
@@ -43,8 +43,13 @@ public class UserService implements UserDetailsService {
 	public Long save(UserDTO infoDTO) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		infoDTO.setPassword(encoder.encode(infoDTO.getPassword()));
-		Long e_CODE = (long) 500;
-		//음 빌더 안떠서 걍 원래 하던데로 해야게따
-		return e_CODE;
+		Long e_CODE = (long) 500; // 예외 할때 사용
+
+		//음 빌더 문제 해결
+		return userRepository.save(UserInfo.builder()
+				.email(infoDTO.getEmail())
+				.role(infoDTO.getRole())
+				.password(infoDTO.getPassword())
+				.build()).getCode();
 	 }
 }

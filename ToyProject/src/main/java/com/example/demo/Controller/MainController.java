@@ -47,11 +47,24 @@ public class MainController {
 		 String id = req.getParameter("id"); 
 		 String pass = req.getParameter("password");
 		 System.out.println(id+"=="+pass);
-		
-		 
 		 return "login";
 	 }
 	
+	@RequestMapping(value="/signUp")
+	public String signUp() {
+		System.out.println("회원가입 하자");
+		return "signUp";
+	}
+	@RequestMapping(value="/admin")
+	public String admin() {
+		System.out.println("admin");
+		return "admin";
+	}
+	@RequestMapping(value="/main")
+	public String main() {
+		System.out.println("main");
+		return "main";
+	}
 	
 	@RequestMapping("/index")
 	public String index() {

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 //import org.hibernate.annotations.CreationTimestamp;
 import lombok.NoArgsConstructor;
@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
-@Data
 public class UserInfo implements UserDetails {
 	
 	@Id
@@ -40,12 +39,13 @@ public class UserInfo implements UserDetails {
 	@Column(name = "role")
 	private String role;
 	
-	@Builder(toBuilder = true)
+	@Builder
 	public UserInfo(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
-		this.role = role;
+		this.role = role;	
 	}
+	
 	//사용자의 권한을 콜렉션 형태로 반환
 	//클래스 자료형은 GrantedAuthority를 구현해야함
 	@Override
@@ -91,5 +91,6 @@ public class UserInfo implements UserDetails {
 		// 계정이 사용 가능한지 확인
 		return true; // 사용가능
 	}
+
 	
 }
