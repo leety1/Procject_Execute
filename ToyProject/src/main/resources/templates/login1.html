@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset = "UTF-8">
+	<title>Title</title>
+</head>
+
+<body>
+	<div>자 이제 로그인을 만들자</div>
+	<form action="/login" method = "POST">
+		<input type = "text" id = "ID" name = "id">
+		<input type = "password" id = "PASS" name = "password">
+		<div>
+			<input type = "submit" value = "Login">
+		</div>
+		<div>
+			<button type="button" class="btn btn-primary" onClick="location.href='signUp'">회원 가입</button>
+		</div>
+		<div>
+			<button onclick="javascript:btn()"> 버튼 </button>
+		</div>
+	</form>
+</body>
+<script type="text/javascript">
+	
+	function btn(){
+		var id = document.getElementById('ID').value;
+		var pass = document.getElementById('PASS').value;
+		alert(id+'=='+pass);
+	}
+
+</script>
+
+</html>
+
